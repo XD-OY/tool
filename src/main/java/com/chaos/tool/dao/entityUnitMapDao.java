@@ -8,6 +8,6 @@ import java.util.List;
 public interface entityUnitMapDao {
 
 
-  List<Activity> createEntity() ;
+  String createEntity(String table) ;
 
 }

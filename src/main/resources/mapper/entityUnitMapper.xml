@@ -5,5 +5,7 @@
 
 <!-- namespace必须和Mapper接口类路径一致 -->
 <mapper namespace="com.chaos.tool.dao.entityUnitMapDao">
-
+    <select id="createEntity" parameterType="String" resultType="String">
+     SELECT b.comments FROM  dba_tables a ,dba_tab_comments b  where  a.TABLE_NAME=b.table_name and  table_name= #{table}
+    </select>
 </mapper>
