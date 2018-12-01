@@ -178,17 +178,24 @@ public class ChangeCharset {
 
         if (str != null) {
 
-//用旧的字符编码解码字符串。解码可能会出现异常。
-
-            byte[] bs = str.getBytes(oldCharset);
-
-//用新的字符编码生成字符串
-
-            return new String(bs, newCharset);
+            return new String(str.getBytes(oldCharset), newCharset);
 
         }
 
         return null;
     }
 
+    /**
+     * HRP字符集转化
+     * @param str
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    public String changeCharsetOfHrp(String str) throws UnsupportedEncodingException{
+        if(str!=null){
+            String result=changeCharset(str,ISO_8859_1,GBK);
+            return result;
+        }
+        return str;
+    }
 }

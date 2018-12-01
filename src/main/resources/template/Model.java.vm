@@ -1,0 +1,25 @@
+package ${package}.database.model;
+
+import org.laziji.commons.mybatis.model.Base;
+
+import java.util.Date;
+
+public class ${className} extends Base{
+
+#foreach ($column in $columns)
+    #if ($column.attrName!="")
+    private $column.attrType $column.attrName;
+    #end
+#end
+
+#foreach ($column in $columns)
+    #if ($column.attrName!="")
+    public void set${column.attrName}($column.attrType value) {
+            $column.attrName = value;
+            }
+    public $column.attrType get${column.attrName}() {
+            return $column.attrName;
+            }
+    #end
+#end
+}

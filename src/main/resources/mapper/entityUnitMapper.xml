@@ -6,6 +6,16 @@
 <!-- namespace必须和Mapper接口类路径一致 -->
 <mapper namespace="com.chaos.tool.dao.entityUnitMapDao">
     <select id="createEntity" parameterType="String" resultType="String">
-     SELECT MAX(B.COMMENTS) FROM DBA_TABLES A ,DBA_TAB_COMMENTS B  WHERE  A.TABLE_NAME=B.TABLE_NAME AND  A.TABLE_NAME= #{table}  AND  B.OWNER='HRPDEV'
+     select  b.comments  from  user_tab_comments b  where b.table_name= #{table}
     </select>
+
+    <resultMap id="queryColumn" type="java.util.HashMap">
+        <result property="key" column="COLUMN_NAME"/>
+        <result property="value" column="DATA_TYPE"/>
+    </resultMap>
+
+    <select id="queryColumn" parameterType="String" resultType="hashmap">
+         select A.COLUMN_NAME,A.DATA_TYPE  FROM  user_tab_columns A WHERE A.TABLE_NAME=  #{table}
+    </select>
+
 </mapper>
