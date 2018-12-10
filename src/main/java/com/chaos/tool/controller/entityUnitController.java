@@ -19,14 +19,14 @@ public class entityUnitController {
 
     @Autowired
     @Qualifier("entityUnitService")
-    private IentityUnitService entityUnitService ;
+    private IentityUnitService entityUnitService;
 
     @RequestMapping("/createEntity")
-    public String createEntity(@RequestParam(value = "table",required = false) String table) throws IOException {
-        if((table+"").equals("null")){
+    public String createEntity(@RequestParam(value = "table", required = false) String table) throws IOException {
+        if ((table + "").equals("null")) {
             return "传入参数无效值！";
-        }else{
-            String result= entityUnitService.createEntity(table);
+        } else {
+            String result = entityUnitService.createEntity(table);
             System.out.print(result);
             return result;
         }

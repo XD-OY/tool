@@ -7,18 +7,18 @@ import java.util.Date;
 public class ${className} extends Base{
 
 #foreach ($column in $columns)
-    #if ($column.attrName!="")
-    private $column.attrType $column.attrName;
+    #if ($column.columnName!="")
+    private $column.attrType $column.columnName;
     #end
 #end
 
 #foreach ($column in $columns)
-    #if ($column.attrName!="")
-    public void set${column.attrName}($column.attrType value) {
-            $column.attrName = value;
+    #if ($column.columnName!="")
+    public void set${column.columnName}($column.attrType value) {
+            $column.columnName = value;
             }
-    public $column.attrType get${column.attrName}() {
-            return $column.attrName;
+    public $column.attrType get${column.columnName}() {
+            return $column.columnName;
             }
     #end
 #end
