@@ -65,6 +65,12 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
 		</dependency>
+		<!--easyExcel的jar-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>easyexcel</artifactId>
+			<version>1.1.2-beta4</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
