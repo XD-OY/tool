@@ -1,0 +1,38 @@
+<mapper namespace="com.chaos.tool.dao.userDao">
+    <resultMap type="com.chaos.tool.entity.UserInfo" id="userMap">
+        <id property="userCode" column="userCode"/>
+        <result property="userName" column="userName"/>
+        <result property="passWord" column="passWord"/>
+        <collection property="roleInfoSet" ofType="com.chaos.tool.entity.RoleInfo">
+            <id property="roleCode" column="roleCode"/>
+            <result property="roleName" column="roleName"/>
+            <collection property="moduleSet" ofType="com.chaos.tool.entity.Module">
+                <id property="moduleCode" column="moduleCode"/>
+                <result property="moduleName" column="moduleName"/>
+            </collection>
+        </collection>
+        <collection property="moduleSet" ofType="com.chaos.tool.entity.RoleInfo">
+            <id property="moduleCode" column="moduleCode"/>
+            <result property="moduleName" column="moduleName"/>
+        </collection>
+    </resultMap>
+    <select id="findByUserCode" parameterType="String" resultMap="userMap">
+        SELECT U.USER_ID        AS userCode,
+        U.USER_NAME      as userName,
+        U.USER_PASS      as passWord,
+        r.role_id        as roleCode,
+        r.role_name      as roleName,
+        o.operation_id   as moduleCode,
+        o.operation_name as moduleName
+        FROM SYS_USER_EXT  U,
+        SYS_ROLE      R,
+        SYS_USER_ROLE UR,
+        SYS_OPERATION O,
+        SYS_ROLE_PERM RP
+        WHERE U.USER_ID = UR.USER_ID
+        AND UR.ROLE_ID = R.ROLE_ID
+        AND R.ROLE_ID = RP.ROLE_ID
+        AND RP.OPERATION_ID = O.OPERATION_ID
+        and u.user_id= #{userCode};
+    </select>
+</mapper>
